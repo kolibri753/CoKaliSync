@@ -1,8 +1,9 @@
 import React from "react";
 import "./kalimbaComponent.css";
+import { KalimbaNote } from "../../types/KalimbaNote";
 
 interface KalimbaComponentProps {
-  notes: string[];
+  notes: KalimbaNote[];
   onNoteClick: (note: string) => void;
   playerId: string;
   playerKeys: string[];
@@ -20,12 +21,13 @@ const KalimbaComponent: React.FC<KalimbaComponentProps> = ({
         <div
           key={index}
           className="kalimba__key"
-          onClick={() => onNoteClick(note)}
+          onClick={() => onNoteClick(note.name)}
           style={{
-            display: playerKeys.includes(note) ? "block" : "none",
+            display: playerKeys.includes(note.name) ? "block" : "none",
+            height: note.height,
           }}
         >
-          {note}
+          {note.name}
         </div>
       ))}
     </div>

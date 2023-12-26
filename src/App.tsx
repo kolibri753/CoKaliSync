@@ -8,15 +8,11 @@ function App() {
   const [playerId, setPlayerId] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    // Initialize the Rune client and set up event handlers
-    // Adjust this based on your specific initialization needs
     Rune.initClient({
       onChange: ({ game, yourPlayerId }) => {
         setGame(game);
         setPlayerId(yourPlayerId);
         console.log("Updated game state:", game);
-        const playerIds = Object.keys(game.playerKeys);
-        console.log("Player IDs:", playerIds);
         console.log("Your Player ID:", yourPlayerId);
       },
     });
@@ -33,7 +29,7 @@ function App() {
   return (
     <div className="container">
       <KalimbaComponent
-        notes={game.kalimbaNotes}
+       notes={game.kalimbaNotes}
         onNoteClick={handleNoteClick}
         playerId={playerId}
         playerKeys={game.playerKeys[playerId]}
