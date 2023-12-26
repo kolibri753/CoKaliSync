@@ -1,48 +1,45 @@
-import { useEffect, useState } from "react"
-import reactLogo from "./assets/rune.svg"
-import viteLogo from "/vite.svg"
-import "./App.css"
-import { GameState } from "./logic.ts"
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import { GameState } from "./logic";
+import KalimbaComponent from "./components/KalimbaComponent/KalimbaComponent";
 
 function App() {
-  const [game, setGame] = useState<GameState>()
-  useEffect(() => {
-    Rune.initClient({
-      onChange: ({ game }) => {
-        setGame(game)
-      },
-    })
-  }, [])
+  const [game, setGame] = useState<GameState | undefined>(undefined);
+  const [playerId, setPlayerId] = useState<string | undefined>(undefined);
 
-  if (!game) {
-    return <div>Loading...</div>
+  useEffect(() => {
+    // Initialize the Rune client and set up event handlers
+    // Adjust this based on your specific initialization needs
+    Rune.initClient({
+      onChange: ({ game, yourPlayerId }) => {
+        setGame(game);
+        setPlayerId(yourPlayerId);
+        console.log("Updated game state:", game);
+        const playerIds = Object.keys(game.playerKeys);
+        console.log("Player IDs:", playerIds);
+        console.log("Your Player ID:", yourPlayerId);
+      },
+    });
+  }, []);
+
+  const handleNoteClick = (note: string) => {
+    console.log(`Clicked note: ${note}`);
+  };
+
+  if (!game || !playerId) {
+    return <div>Loading...</div>;
   }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://developers.rune.ai" target="_blank">
-          <img src={reactLogo} className="logo rune" alt="Rune logo" />
-        </a>
-      </div>
-      <h1>Vite + Rune</h1>
-      <div className="card">
-        <button onClick={() => Rune.actions.increment({ amount: 1 })}>
-          count is {game.count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> or <code>src/logic.ts</code> and save to
-          test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and Rune logos to learn more
-      </p>
-    </>
-  )
+    <div className="container">
+      <KalimbaComponent
+        notes={game.kalimbaNotes}
+        onNoteClick={handleNoteClick}
+        playerId={playerId}
+        playerKeys={game.playerKeys[playerId]}
+      />
+    </div>
+  );
 }
 
-export default App
+export default App;
