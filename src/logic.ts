@@ -22,68 +22,68 @@ declare global {
   const Rune: RuneClient<GameState, GameActions>;
 }
 
+export const notesDistribution: string[] = [
+  "D6",
+  "B5",
+  "G5",
+  "E5",
+  "C5",
+  "A4",
+  "F4",
+  "D4",
+  "C4",
+  "E4",
+  "G4",
+  "B4",
+  "D5",
+  "F5",
+  "A5",
+  "C6",
+  "E6",
+];
+
+export const soundFiles: string[] = [
+  "src/assets/kalimbaKeySounds/2.m4a",
+  "src/assets/kalimbaKeySounds/3.m4a",
+  "src/assets/kalimbaKeySounds/1.m4a",
+  "src/assets/kalimbaKeySounds/4.m4a",
+  "src/assets/kalimbaKeySounds/5.m4a",
+  "src/assets/kalimbaKeySounds/6.m4a",
+  "src/assets/kalimbaKeySounds/7.m4a",
+  "src/assets/kalimbaKeySounds/8.m4a",
+  "src/assets/kalimbaKeySounds/9.m4a",
+  "src/assets/kalimbaKeySounds/10.m4a",
+  "src/assets/kalimbaKeySounds/11.m4a",
+  "src/assets/kalimbaKeySounds/12.m4a",
+  "src/assets/kalimbaKeySounds/13.m4a",
+  "src/assets/kalimbaKeySounds/14.m4a",
+  "src/assets/kalimbaKeySounds/15.m4a",
+  "src/assets/kalimbaKeySounds/16.m4a",
+  "src/assets/kalimbaKeySounds/17.m4a",
+];
+
+export const notesHeight: string[] = [
+  "3.33em",
+  "3.65em",
+  "3.9em",
+  "4.25em",
+  "4.5em",
+  "4.8em",
+  "5.3em",
+  "5.8em",
+  "6.1em",
+  "5.55em",
+  "5.2em",
+  "4.7em",
+  "4.3em",
+  "4.05em",
+  "3.75em",
+  "3.5em",
+  "3.2em",
+].map((height) => (parseFloat(height) * 1.5).toString() + "em");
+
 //return an array of KalimbaNote objects
 function generateKalimbaNotes(): KalimbaNote[] {
-  const notesDistribution: string[] = [
-    "D6",
-    "B5",
-    "G5",
-    "E5",
-    "C5",
-    "A4",
-    "F4",
-    "D4",
-    "C4",
-    "E4",
-    "G4",
-    "B4",
-    "D5",
-    "F5",
-    "A5",
-    "C6",
-    "E6",
-  ];
-
-  const soundFiles: string[] = [
-    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/2.m4a",
-    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/3.m4a",
-    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/1.m4a",
-    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/4.m4a",
-    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/5.m4a",
-    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/6.m4a",
-    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/7.m4a",
-    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/8.m4a",
-    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/9.m4a",
-    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/10.m4a",
-    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/11.m4a",
-    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/12.m4a",
-    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/13.m4a",
-    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/14.m4a",
-    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/15.m4a",
-    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/16.m4a",
-    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/17.m4a",
-  ];
-
-  const notesHeight: string[] = [
-    "3.33em",
-    "3.65em",
-    "3.9em",
-    "4.25em",
-    "4.5em",
-    "4.8em",
-    "5.3em",
-    "5.8em",
-    "6.1em",
-    "5.55em",
-    "5.2em",
-    "4.7em",
-    "4.3em",
-    "4.05em",
-    "3.75em",
-    "3.5em",
-    "3.2em",
-  ].map((height) => (parseFloat(height) * 1.5).toString() + "em");
-
   // Create an array of KalimbaNote objects
   const kalimbaNotes: KalimbaNote[] = notesDistribution.map((note, index) => {
     const height = notesHeight[index];
@@ -125,15 +125,8 @@ Rune.initLogic({
       game.count += amount;
     },
     playNote: ({ noteName }, { game }) => {
-      const note = game.kalimbaNotes.find((note) => note.name === noteName);
-      console.log(
-        "TODO: read the note. this note.params.noteName and play the right m4a file",
-        note
-      );
-      const audio = new Audio(
-        import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/2.m4a"
-      );
-      audio.play();
+      // you will want to add business logic here to see if this was the right note
+      // rune will pass this action off to all clients and the new playSounds function will see it and do it's own thing (play the noteName provided)
     },
   },
 });
