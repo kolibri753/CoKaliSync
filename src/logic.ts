@@ -12,8 +12,9 @@ export interface GameState {
 }
 
 // Define the game actions
-type GameActions = {
+export type GameActions = {
   increment: (params: { amount: number }) => void;
+  playNote: (params: { noteName: string }) => void;
 };
 
 // Declare the Rune client and global objects
@@ -116,9 +117,23 @@ Rune.initLogic({
 
     return { count: 0, kalimbaNotes, playerKeys };
   },
+  update: (obj) => {
+    console.log(obj);
+  },
   actions: {
     increment: ({ amount }, { game }) => {
       game.count += amount;
+    },
+    playNote: ({ noteName }, { game }) => {
+      const note = game.kalimbaNotes.find((note) => note.name === noteName);
+      console.log(
+        "TODO: read the note. this note.params.noteName and play the right m4a file",
+        note
+      );
+      const audio = new Audio(
+        import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/2.m4a"
+      );
+      audio.play();
     },
   },
 });

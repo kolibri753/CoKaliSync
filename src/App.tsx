@@ -4,6 +4,7 @@ import { GameState } from "./logic";
 import KalimbaComponent from "./components/KalimbaComponent/KalimbaComponent";
 import TabsComponent from "./components/TabsComponent/TabsComponent";
 import { tabs } from "./data/tabsData";
+import playSounds from "./lib/playSounds";
 
 function App() {
   const [game, setGame] = useState<GameState | undefined>(undefined);
@@ -11,11 +12,13 @@ function App() {
 
   useEffect(() => {
     Rune.initClient({
-      onChange: ({ game, yourPlayerId }) => {
+      onChange: ({ game, yourPlayerId, previousGame, action }) => {
         setGame(game);
         setPlayerId(yourPlayerId);
         console.log("Updated game state:", game);
         console.log("Your Player ID:", yourPlayerId);
+
+        playSounds(game, previousGame, action);
       },
     });
   }, []);

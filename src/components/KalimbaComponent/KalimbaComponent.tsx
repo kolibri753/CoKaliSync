@@ -52,7 +52,8 @@ const KalimbaComponent: React.FC<KalimbaComponentProps> = ({
           className="kalimba__key"
           onClick={() => {
             onNoteClick(note.name);
-            playSound(audioRefs[index]);
+            // playSound(audioRefs[index]);
+            Rune.actions.playNote({ noteName: note.name });
           }}
           style={{
             display: playerKeys.includes(note.name) ? "block" : "none",
