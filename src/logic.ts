@@ -1,8 +1,11 @@
 import type { RuneClient } from "rune-games-sdk/multiplayer";
-import { KalimbaNote } from "./types/KalimbaNote";
+import { KalimbaNote, Note } from "./types/KalimbaNote";
+import { playSound } from "./utils/audioUtils";
 
 // Define the type for player keys
 type PlayerKeys = { [playerId: string]: string[] };
+
+
 
 // Define the game state interface
 export interface GameState {
@@ -14,6 +17,7 @@ export interface GameState {
 // Define the game actions
 type GameActions = {
   increment: (params: { amount: number }) => void;
+  playNote: (params: { note: Note; yourPlayerId: string }) => void;
 };
 
 // Declare the Rune client and global objects
@@ -87,8 +91,9 @@ function generateKalimbaNotes(): KalimbaNote[] {
   const kalimbaNotes: KalimbaNote[] = notesDistribution.map((note, index) => {
     const height = notesHeight[index];
     const sound = soundFiles[index];
-    return new KalimbaNote(note, height, sound);
+    return new KalimbaNote(note as Note, height, sound);
   });
+  
 
   return kalimbaNotes;
 }
@@ -119,6 +124,12 @@ Rune.initLogic({
   actions: {
     increment: ({ amount }, { game }) => {
       game.count += amount;
+    },
+    playNote: ({ note, yourPlayerId }, { game }) => {
+      // Add logic to handle playing a note
+      console.log(`Player ${yourPlayerId} played note: ${note}`);
+      // You can trigger sound here if needed
+      playSound(note);
     },
   },
 });

@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import "./kalimbaComponent.css";
-import { KalimbaNote } from "../../types/KalimbaNote";
+import { KalimbaNote, Note } from "../../types/KalimbaNote";
 
 interface KalimbaComponentProps {
   notes: KalimbaNote[];
-  onNoteClick: (note: string) => void;
+  onNoteClick: (note: Note) => void;
   playerId: string;
   playerKeys: string[];
 }
@@ -16,33 +16,33 @@ const KalimbaComponent: React.FC<KalimbaComponentProps> = ({
   playerKeys,
 }) => {
   // Array of Audio refs for preloading
-  const audioRefs: React.RefObject<HTMLAudioElement>[] = notes.map(() =>
-    useRef<HTMLAudioElement>(null)
-  );
+  // const audioRefs: React.RefObject<HTMLAudioElement>[] = notes.map(() =>
+  //   useRef<HTMLAudioElement>(null)
+  // );
 
   // Effect to preload audio files
-  useEffect(() => {
-    audioRefs.forEach((ref, index) => {
-      if (ref.current) {
-        ref.current.src = notes[index].sound;
-        ref.current.load();
-      }
-    });
-  }, [notes]);
+  // useEffect(() => {
+  //   audioRefs.forEach((ref, index) => {
+  //     if (ref.current) {
+  //       ref.current.src = notes[index].sound;
+  //       ref.current.load();
+  //     }
+  //   });
+  // }, [notes]);
 
   // Function to play the sound
-  const playSound = (soundRef: React.RefObject<HTMLAudioElement>) => {
-    const audio = soundRef.current;
-    if (audio) {
-      audio.currentTime = 0; // Reset to the beginning
-      const playPromise = audio.play();
-      if (playPromise) {
-        playPromise.catch((error) => {
-          console.error("Error playing audio:", error);
-        });
-      }
-    }
-  };
+  // const playSound = (soundRef: React.RefObject<HTMLAudioElement>) => {
+  //   const audio = soundRef.current;
+  //   if (audio) {
+  //     audio.currentTime = 0; // Reset to the beginning
+  //     const playPromise = audio.play();
+  //     if (playPromise) {
+  //       playPromise.catch((error) => {
+  //         console.error("Error playing audio:", error);
+  //       });
+  //     }
+  //   }
+  // };
 
   return (
     <div className="kalimba__container">
@@ -52,7 +52,7 @@ const KalimbaComponent: React.FC<KalimbaComponentProps> = ({
           className="kalimba__key"
           onClick={() => {
             onNoteClick(note.name);
-            playSound(audioRefs[index]);
+            // playSound(audioRefs[index]);
           }}
           style={{
             display: playerKeys.includes(note.name) ? "block" : "none",
@@ -61,7 +61,7 @@ const KalimbaComponent: React.FC<KalimbaComponentProps> = ({
         >
           {note.name}
           {/* Audio element for each note */}
-          <audio ref={audioRefs[index]} />
+          {/* <audio ref={audioRefs[index]} /> */}
         </div>
       ))}
     </div>
