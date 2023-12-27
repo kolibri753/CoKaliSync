@@ -21,7 +21,6 @@ declare global {
   const Rune: RuneClient<GameState, GameActions>;
 }
 
-
 //return an array of KalimbaNote objects
 function generateKalimbaNotes(): KalimbaNote[] {
   const notesDistribution: string[] = [
@@ -45,9 +44,23 @@ function generateKalimbaNotes(): KalimbaNote[] {
   ];
 
   const soundFiles: string[] = [
-    "path/to/C4-sound.mp3",
-    "path/to/D4-sound.mp3",
-    // ... (add sound file paths for all notes)
+    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/2.m4a",
+    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/3.m4a",
+    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/1.m4a",
+    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/4.m4a",
+    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/5.m4a",
+    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/6.m4a",
+    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/7.m4a",
+    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/8.m4a",
+    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/9.m4a",
+    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/10.m4a",
+    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/11.m4a",
+    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/12.m4a",
+    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/13.m4a",
+    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/14.m4a",
+    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/15.m4a",
+    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/16.m4a",
+    import.meta.env.BASE_URL + "src/assets/kalimbaKeySounds/17.m4a",
   ];
 
   const notesHeight: string[] = [
@@ -68,7 +81,7 @@ function generateKalimbaNotes(): KalimbaNote[] {
     "3.75em",
     "3.5em",
     "3.2em",
-  ].map((height) => (parseFloat(height) * 1.5).toString() + 'em');
+  ].map((height) => (parseFloat(height) * 1.5).toString() + "em");
 
   // Create an array of KalimbaNote objects
   const kalimbaNotes: KalimbaNote[] = notesDistribution.map((note, index) => {

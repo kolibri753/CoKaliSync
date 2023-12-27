@@ -29,7 +29,7 @@ function App() {
   return (
     <div className="container">
       <KalimbaComponent
-       notes={game.kalimbaNotes}
+        notes={game.kalimbaNotes}
         onNoteClick={handleNoteClick}
         playerId={playerId}
         playerKeys={game.playerKeys[playerId]}
