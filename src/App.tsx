@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { GameState } from "./logic";
 import KalimbaComponent from "./components/KalimbaComponent/KalimbaComponent";
+import TabsComponent from "./components/TabsComponent/TabsComponent";
+import { tabs } from "./data/tabsData";
 
 function App() {
   const [game, setGame] = useState<GameState | undefined>(undefined);
@@ -20,6 +22,7 @@ function App() {
 
   const handleNoteClick = (note: string) => {
     console.log(`Clicked note: ${note}`);
+    // Add logic to check if the clicked note is correct
   };
 
   if (!game || !playerId) {
@@ -28,6 +31,7 @@ function App() {
 
   return (
     <div className="container">
+      <TabsComponent tabs={tabs} onNotePlayed={handleNoteClick} />
       <KalimbaComponent
         notes={game.kalimbaNotes}
         onNoteClick={handleNoteClick}
