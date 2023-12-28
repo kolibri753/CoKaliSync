@@ -34,7 +34,7 @@ function App() {
 
   return (
     <div className="container">
-      <TabsComponent tabs={tabs} onNotePlayed={handleNoteClick} />
+      <TabsComponent tabs={tabs} onNotePlayed={handleNoteClick} game={game} />
       <KalimbaComponent
         notes={game.kalimbaNotes}
         onNoteClick={handleNoteClick}

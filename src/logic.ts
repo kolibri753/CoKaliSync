@@ -9,6 +9,7 @@ export interface GameState {
   count: number;
   kalimbaNotes: KalimbaNote[];
   playerKeys: PlayerKeys;
+  currentNoteIndex: number;
 }
 
 // Define the game actions
@@ -93,8 +94,10 @@ Rune.initLogic({
       // Log player keys to the console
       console.log(`Player ${i + 1} (${playerId}) keys:`, playerKeys[playerId]);
     }
+    const currentNoteIndex = 0;
 
-    return { count: 0, kalimbaNotes, playerKeys };
+
+    return { count: 0, kalimbaNotes, playerKeys, currentNoteIndex };
   },
   // update: (obj) => {
   //   console.log(obj);
@@ -104,6 +107,9 @@ Rune.initLogic({
       game.count += amount;
     },
     playNote: ({ noteName }, { game }) => {
+      game.currentNoteIndex = (game.currentNoteIndex + 1) % game.kalimbaNotes.length;
+
+      console.log("Active tab " + game.currentNoteIndex)
       // you will want to add business logic here to see if this was the right note
       // rune will pass this action off to all clients and the new playSounds function will see it and do it's own thing (play the noteName provided)
     },
