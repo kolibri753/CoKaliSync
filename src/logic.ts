@@ -42,26 +42,6 @@ export const notesDistribution: string[] = [
   "E6",
 ];
 
-export const soundFiles: string[] = [
-  "src/assets/kalimbaKeySounds/2.m4a",
-  "src/assets/kalimbaKeySounds/3.m4a",
-  "src/assets/kalimbaKeySounds/1.m4a",
-  "src/assets/kalimbaKeySounds/4.m4a",
-  "src/assets/kalimbaKeySounds/5.m4a",
-  "src/assets/kalimbaKeySounds/6.m4a",
-  "src/assets/kalimbaKeySounds/7.m4a",
-  "src/assets/kalimbaKeySounds/8.m4a",
-  "src/assets/kalimbaKeySounds/9.m4a",
-  "src/assets/kalimbaKeySounds/10.m4a",
-  "src/assets/kalimbaKeySounds/11.m4a",
-  "src/assets/kalimbaKeySounds/12.m4a",
-  "src/assets/kalimbaKeySounds/13.m4a",
-  "src/assets/kalimbaKeySounds/14.m4a",
-  "src/assets/kalimbaKeySounds/15.m4a",
-  "src/assets/kalimbaKeySounds/16.m4a",
-  "src/assets/kalimbaKeySounds/17.m4a",
-];
-
 export const notesHeight: string[] = [
   "3.33em",
   "3.65em",
@@ -87,8 +67,7 @@ function generateKalimbaNotes(): KalimbaNote[] {
   // Create an array of KalimbaNote objects
   const kalimbaNotes: KalimbaNote[] = notesDistribution.map((note, index) => {
     const height = notesHeight[index];
-    const sound = soundFiles[index];
-    return new KalimbaNote(note, height, sound);
+    return new KalimbaNote(note, height);
   });
 
   return kalimbaNotes;
@@ -117,9 +96,9 @@ Rune.initLogic({
 
     return { count: 0, kalimbaNotes, playerKeys };
   },
-  update: (obj) => {
-    console.log(obj);
-  },
+  // update: (obj) => {
+  //   console.log(obj);
+  // },
   actions: {
     increment: ({ amount }, { game }) => {
       game.count += amount;

@@ -11,7 +11,7 @@ export default function playSounds(
       (note) => note.name === action.params.noteName
     );
     if (!note) return console.error("Note could not be determined");
-    const audio = new Audio(import.meta.env.BASE_URL + note.sound);
+    const audio = new Audio(import.meta.env.BASE_URL + `src/assets/kalimbaKeySounds/${note.name}.m4a`);
     audio.play();
   }
 }
