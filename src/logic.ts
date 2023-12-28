@@ -1,5 +1,6 @@
 import type { RuneClient } from "rune-games-sdk/multiplayer";
 import { KalimbaNote } from "./types/KalimbaNote";
+import { tabs } from "./data/tabsData";
 
 // Define the type for player keys
 type PlayerKeys = { [playerId: string]: string[] };
@@ -10,6 +11,7 @@ export interface GameState {
   kalimbaNotes: KalimbaNote[];
   playerKeys: PlayerKeys;
   currentNoteIndex: number;
+  isCorrect: boolean | true;
 }
 
 // Define the game actions
@@ -96,8 +98,7 @@ Rune.initLogic({
     }
     const currentNoteIndex = 0;
 
-
-    return { count: 0, kalimbaNotes, playerKeys, currentNoteIndex };
+    return { count: 0, kalimbaNotes, playerKeys, currentNoteIndex, isCorrect: true};
   },
   // update: (obj) => {
   //   console.log(obj);
@@ -107,11 +108,18 @@ Rune.initLogic({
       game.count += amount;
     },
     playNote: ({ noteName }, { game }) => {
-      game.currentNoteIndex = (game.currentNoteIndex + 1) % game.kalimbaNotes.length;
+      const currentTab = tabs[game.currentNoteIndex];
 
-      console.log("Active tab " + game.currentNoteIndex)
-      // you will want to add business logic here to see if this was the right note
-      // rune will pass this action off to all clients and the new playSounds function will see it and do it's own thing (play the noteName provided)
+      // Check if the played note matches the current tab note
+      game.isCorrect = noteName === currentTab.noteName;
+
+      console.log(`Active tab: ${currentTab.noteName}`);
+      console.log(`Is correct: ${game.isCorrect}`);
+
+      // Go to next Tab
+      if (game.isCorrect) {
+        game.currentNoteIndex = (game.currentNoteIndex + 1) % tabs.length;
+      }
     },
   },
 });

@@ -32,3 +32,8 @@
 .tab.played {
   display: none;
 }
+
+.tab.incorrect {
+  background-color: #ff0000; /* Red color for incorrect note */
+  color: #fff;
+}

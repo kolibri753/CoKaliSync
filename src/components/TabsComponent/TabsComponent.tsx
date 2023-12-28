@@ -21,7 +21,12 @@ const TabsComponent: React.FC<TabsComponentProps> = ({
             key={index}
             className={`tab ${
               index === game.currentNoteIndex ? "current" : ""
-            } ${index < game.currentNoteIndex ? "played" : ""}`}
+            } ${index < game.currentNoteIndex ? "played" : ""} ${
+              index === game.currentNoteIndex && !game.isCorrect
+                ? "incorrect"
+                : ""
+            }`}
+            onClick={() => onNotePlayed(tab.noteName, false)} // assuming false for incorrect
           >
             {tab.noteName}
           </div>
