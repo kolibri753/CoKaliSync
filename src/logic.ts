@@ -127,10 +127,31 @@ Rune.initLogic({
       // Update score based on correctness
       if (game.isCorrect) {
         game.score += 1;
-        game.currentNoteIndex = (game.currentNoteIndex + 1) % tabs.length;
+
+        if (game.currentNoteIndex + 1 === tabs.length) {
+          // Determine winners and losers based on the score
+          const winners: Record<string, "WON" | "LOST" | number> = {};
+          const losers: Record<string, "WON" | "LOST" | number> = {};
+
+          Object.keys(game.playerKeys).forEach((playerId) => {
+            if (game.score > 0) {
+              winners[playerId] = "WON";
+            } else {
+              losers[playerId] = "LOST";
+            }
+          });
+
+          // Call Rune.gameOver with the results
+          Rune.gameOver({
+            players: { ...winners, ...losers },
+          });
+        } else {
+          game.currentNoteIndex = (game.currentNoteIndex + 1) % tabs.length;
+        }
       } else {
         game.score -= 1;
       }
+      console.log(game.currentNoteIndex, tabs.length);
     },
   },
 });
