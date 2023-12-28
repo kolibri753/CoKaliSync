@@ -12,6 +12,7 @@ export interface GameState {
   playerKeys: PlayerKeys;
   currentNoteIndex: number;
   isCorrect: boolean | true;
+  score: number | 0;
 }
 
 // Define the game actions
@@ -98,7 +99,14 @@ Rune.initLogic({
     }
     const currentNoteIndex = 0;
 
-    return { count: 0, kalimbaNotes, playerKeys, currentNoteIndex, isCorrect: true};
+    return {
+      count: 0,
+      kalimbaNotes,
+      playerKeys,
+      currentNoteIndex,
+      isCorrect: true,
+      score: 0,
+    };
   },
   // update: (obj) => {
   //   console.log(obj);
@@ -116,9 +124,12 @@ Rune.initLogic({
       console.log(`Active tab: ${currentTab.noteName}`);
       console.log(`Is correct: ${game.isCorrect}`);
 
-      // Go to next Tab
+      // Update score based on correctness
       if (game.isCorrect) {
+        game.score += 1;
         game.currentNoteIndex = (game.currentNoteIndex + 1) % tabs.length;
+      } else {
+        game.score -= 1;
       }
     },
   },

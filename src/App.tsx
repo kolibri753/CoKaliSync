@@ -41,6 +41,9 @@ function App() {
         playerId={playerId}
         playerKeys={game.playerKeys[playerId]}
       />
+      <div className="score-container">
+        <p>Score: {game.score}</p>
+      </div>
     </div>
   );
 }
