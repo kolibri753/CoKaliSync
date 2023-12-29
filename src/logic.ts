@@ -64,13 +64,20 @@ export const notesHeight: string[] = [
   "3.75em",
   "3.5em",
   "3.2em",
-].map((height) => (parseFloat(height) * 3).toString() + "em");
+]
 
 //return an array of KalimbaNote objects
 function generateKalimbaNotes(): KalimbaNote[] {
+  console.log(window.innerHeight)
   // Create an array of KalimbaNote objects
   const kalimbaNotes: KalimbaNote[] = notesDistribution.map((note, index) => {
-    const height = notesHeight[index];
+    // Calculate adjusted height based on the screen height
+    const adjustedHeight =
+      window.innerHeight < 460
+        ? parseFloat(notesHeight[index]) * 2 // for smaller screens
+        : parseFloat(notesHeight[index]) * 3; // for larger screens
+
+    const height = adjustedHeight.toString() + "em";
     return new KalimbaNote(note, height);
   });
 
