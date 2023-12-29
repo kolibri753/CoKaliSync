@@ -1,26 +1,97 @@
+.kalimba__container,
+.kalimba__container::before,
+.kalimba__key {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .kalimba__container {
+  flex: 1;
   display: flex;
   max-width: 100%;
-  /* justify-content: center; */
-  /* align-items: center; */
+  max-height: 100%;
   background-color: rgb(136, 96, 44);
+  background-image: url("/src/assets/images/wood-bg.jpg");
+  overflow: hidden;
+}
+
+.kalimba__container::before {
+  content: "";
+  position: absolute;
+  /* width: 99%; */
+  height: 1.3em;
+  top: 36%;
+  transform: translateY(-50%);
+
+  background-image: url("/src/assets/images/metal-bg.jpg");
+  filter: brightness(1.1);
+  box-shadow: 0px -1px 8px 4px rgb(0 0 0 / 60%);
+
+  z-index: 2;
+}
+
+.eight-notes {
+  justify-content: flex-end;
+  border-radius: 2em 0 0 0;
+  margin-left: 1.3em;
+}
+
+.eight-notes::before {
+  width: 92%;
+  border-radius: 0.5em 0 0 0.5em;
+}
+
+.nine-notes {
+  justify-content: flex-start;
+  border-radius: 0 2em 0 0;
+}
+
+.nine-notes::before {
+  width: 101%;
+  border-radius: 0 0.5em 0.5em 0;
+}
+
+.eight-notes::after,
+.nine-notes::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 10em;
+  height: 5em;
+  background-color: #00000080;
+  box-shadow: inset 0px 0px 20px 8px rgb(0 0 0);
+}
+
+.eight-notes::after {
+  right: -5.5em;
+  border-radius: 5em 0;
+}
+
+.nine-notes::after {
+  left: -4.5em;
+  border-radius: 0 5em;
 }
 
 .kalimba__key {
-  width: 1.55em;
-  height: 8em;
-  background-color: #7b4444;
-  border: 1px solid #666;
-  border-radius: 8px;
-  margin: 0 3px;
   display: flex;
   align-items: center;
   justify-content: center;
+  align-items: flex-end;
+  width: 1.55em;
+  height: 8em;
+  border-radius: 0.5em;
+  margin: 1em 3px 0;
+  padding-bottom: 0.5em;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1em;
   font-weight: bold;
+
+  background-image: url("/src/assets/images/metal-bg.jpg");
+
+  z-index: 1;
 }
 
 .kalimba__key:hover {
-  background-color: #d0d0d0;
+  filter: brightness(0.9);
 }

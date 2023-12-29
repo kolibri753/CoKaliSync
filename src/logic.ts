@@ -64,7 +64,7 @@ export const notesHeight: string[] = [
   "3.75em",
   "3.5em",
   "3.2em",
-].map((height) => (parseFloat(height) * 1.5).toString() + "em");
+].map((height) => (parseFloat(height) * 3).toString() + "em");
 
 //return an array of KalimbaNote objects
 function generateKalimbaNotes(): KalimbaNote[] {

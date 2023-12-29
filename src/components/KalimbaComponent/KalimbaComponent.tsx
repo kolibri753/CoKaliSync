@@ -15,9 +15,11 @@ const KalimbaComponent: React.FC<KalimbaComponentProps> = ({
   playerId,
   playerKeys,
 }) => {
+  const containerClassName =
+    playerKeys.length === 8 ? "eight-notes" : "nine-notes";
 
   return (
-    <div className="kalimba__container">
+    <div className={`kalimba__container ${containerClassName}`}>
       {notes.map((note, index) => (
         <div
           key={index}
@@ -27,7 +29,7 @@ const KalimbaComponent: React.FC<KalimbaComponentProps> = ({
             Rune.actions.playNote({ noteName: note.name });
           }}
           style={{
-            display: playerKeys.includes(note.name) ? "block" : "none",
+            display: playerKeys.includes(note.name) ? "flex" : "none",
             height: note.height,
           }}
         >

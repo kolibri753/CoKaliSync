@@ -35,15 +35,15 @@ function App() {
   return (
     <div className="container">
       <TabsComponent tabs={tabs} onNotePlayed={handleNoteClick} game={game} />
+      <div className="score-container">
+        <p>Score: {game.score}</p>
+      </div>
       <KalimbaComponent
         notes={game.kalimbaNotes}
         onNoteClick={handleNoteClick}
         playerId={playerId}
         playerKeys={game.playerKeys[playerId]}
       />
-      <div className="score-container">
-        <p>Score: {game.score}</p>
-      </div>
     </div>
   );
 }
