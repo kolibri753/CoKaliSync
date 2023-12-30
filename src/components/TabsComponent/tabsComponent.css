@@ -23,7 +23,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: -1;
+  z-index: 1;
 }
 
 .tabs__tab {
@@ -35,11 +35,12 @@
   height: 1em;
   padding: 0.4em;
   text-align: center;
-  background: linear-gradient(#eee 50%, #fff 50%); /* Ticker paper gradient */
+  background: linear-gradient(#eee 50%, #fff 50%);
   border: 0.05em solid #ccc;
   border-radius: 0.5em;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s, visibility 0.3s, opacity 0.3s;
+  z-index: 2;
 }
 
 .tabs__tab:nth-child(odd) {
