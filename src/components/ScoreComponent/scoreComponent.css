@@ -1,0 +1,40 @@
+.score__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.1em;
+  color: #ecf0f1;
+  border-radius: 0.5em;
+  margin: 0.4em 4.5em;
+  font-size: 1.3em;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  border: 0.1em solid #38823a;
+}
+
+.score__container.positive {
+  background-color: #4caf50;
+  border-color: #38823a;
+}
+
+.score__container.negative {
+  background-color: #ff0000;
+  border-color: #bd0000;
+}
+
+.score__value {
+  margin: 0;
+}
+
+@keyframes scoreChange {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
+
+.score__value {
+  animation: scoreChange 0.3s ease;
+}

@@ -3,6 +3,7 @@ import "./App.css";
 import { GameState } from "./logic";
 import KalimbaComponent from "./components/KalimbaComponent/KalimbaComponent";
 import TabsComponent from "./components/TabsComponent/TabsComponent";
+import ScoreComponent from "./components/ScoreComponent/ScoreComponent";
 import { tabs } from "./data/tabsData";
 import playSounds from "./lib/playSounds";
 
@@ -35,9 +36,7 @@ function App() {
   return (
     <div className="container">
       <TabsComponent tabs={tabs} onNotePlayed={handleNoteClick} game={game} />
-      <div className="score-container">
-        <p>Score: {game.score}</p>
-      </div>
+      <ScoreComponent score={game.score} />
       <KalimbaComponent
         notes={game.kalimbaNotes}
         onNoteClick={handleNoteClick}
