@@ -1,6 +1,6 @@
 import React from "react";
 import "./TabsComponent.css";
-import { GameState } from "../../logic"; // Import GameState from the logic file
+import { GameState } from "../../logic";
 
 interface TabsComponentProps {
   tabs: { noteName: string; duration: number }[];
@@ -14,19 +14,19 @@ const TabsComponent: React.FC<TabsComponentProps> = ({
   game,
 }) => {
   return (
-    <div className="tabs-container">
-      <div className="tabs-line">
+    <div className="tabs__container">
+      <div className="tabs__line">
         {tabs.map((tab, index) => (
           <div
             key={index}
-            className={`tab ${
+            className={`tabs__tab ${
               index === game.currentNoteIndex ? "current" : ""
             } ${index < game.currentNoteIndex ? "played" : ""} ${
               index === game.currentNoteIndex && !game.isCorrect
                 ? "incorrect"
                 : ""
             }`}
-            onClick={() => onNotePlayed(tab.noteName, false)} // assuming false for incorrect
+            onClick={() => onNotePlayed(tab.noteName, false)}
           >
             {tab.noteName}
           </div>
