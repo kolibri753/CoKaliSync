@@ -1,4 +1,4 @@
-export const tabs: { noteName: string; duration: number }[] = [
+export const tabsEasy: { noteName: string; duration: number }[] = [
   { noteName: "C4", duration: 5000 },
   { noteName: "E4", duration: 5000 },
   { noteName: "G4", duration: 5000 },

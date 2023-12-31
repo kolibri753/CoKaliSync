@@ -4,7 +4,8 @@ import { GameState } from "./logic";
 import KalimbaComponent from "./components/KalimbaComponent/KalimbaComponent";
 import TabsComponent from "./components/TabsComponent/TabsComponent";
 import ScoreComponent from "./components/ScoreComponent/ScoreComponent";
-import { tabs } from "./data/tabsData";
+import StartMenu from "./components/StartMenu/StartMenu";
+import { Difficulty } from "./types/DifficultyTypes";
 import playSounds from "./lib/playSounds";
 
 function App() {
@@ -26,7 +27,10 @@ function App() {
 
   const handleNoteClick = (note: string) => {
     console.log(`Clicked note: ${note}`);
-    // Add logic to check if the clicked note is correct
+  };
+
+  const startGame = (difficulty: Difficulty) => {
+    Rune.actions.startGame({ difficulty });
   };
 
   if (!game || !playerId) {
@@ -34,16 +38,26 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <TabsComponent tabs={tabs} onNotePlayed={handleNoteClick} game={game} />
-      <ScoreComponent score={game.score} />
-      <KalimbaComponent
-        notes={game.kalimbaNotes}
-        onNoteClick={handleNoteClick}
-        playerId={playerId}
-        playerKeys={game.playerKeys[playerId]}
-      />
-    </div>
+    <main className="container">
+      {game.difficulty ? (
+        <>
+          <TabsComponent
+            tabs={game.tabs}
+            onNotePlayed={handleNoteClick}
+            game={game}
+          />
+          <ScoreComponent score={game.score} />
+          <KalimbaComponent
+            notes={game.kalimbaNotes}
+            onNoteClick={handleNoteClick}
+            playerId={playerId}
+            playerKeys={game.playerKeys[playerId]}
+          />
+        </>
+      ) : (
+          <StartMenu onSelectDifficulty={startGame} />
+      )}
+    </main>
   );
 }
 

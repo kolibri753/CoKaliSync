@@ -1,6 +1,7 @@
 import type { RuneClient } from "rune-games-sdk/multiplayer";
 import { KalimbaNote } from "./types/KalimbaNote";
-import { tabs } from "./data/tabsData";
+import { getTabsForDifficulty } from "./lib/getTabsForDifficulty";
+import { Difficulty } from "./types/DifficultyTypes";
 
 // Define the type for player keys
 type PlayerKeys = { [playerId: string]: string[] };
@@ -13,12 +14,15 @@ export interface GameState {
   currentNoteIndex: number;
   isCorrect: boolean | true;
   score: number | 0;
+  difficulty: Difficulty | null;
+  tabs: { noteName: string; duration: number }[];
 }
 
 // Define the game actions
 export type GameActions = {
   increment: (params: { amount: number }) => void;
   playNote: (params: { noteName: string }) => void;
+  startGame: (params: { difficulty: Difficulty }) => void;
 };
 
 // Declare the Rune client and global objects
@@ -64,11 +68,11 @@ export const notesHeight: string[] = [
   "3.75em",
   "3.5em",
   "3.2em",
-]
+];
 
 //return an array of KalimbaNote objects
 function generateKalimbaNotes(): KalimbaNote[] {
-  console.log(window.innerHeight)
+  console.log(window.innerHeight);
   // Create an array of KalimbaNote objects
   const kalimbaNotes: KalimbaNote[] = notesDistribution.map((note, index) => {
     // Calculate adjusted height based on the screen height
@@ -113,6 +117,8 @@ Rune.initLogic({
       currentNoteIndex,
       isCorrect: true,
       score: 0,
+      difficulty: null,
+      tabs: [],
     };
   },
   // update: (obj) => {
@@ -122,8 +128,16 @@ Rune.initLogic({
     increment: ({ amount }, { game }) => {
       game.count += amount;
     },
+    startGame: ({ difficulty }, { game }) => {
+      if (game.difficulty) {
+        throw Rune.invalidAction();
+      }
+
+      game.difficulty = difficulty;
+      game.tabs = getTabsForDifficulty(difficulty);
+    },
     playNote: ({ noteName }, { game }) => {
-      const currentTab = tabs[game.currentNoteIndex];
+      const currentTab = game.tabs[game.currentNoteIndex];
 
       // Check if the played note matches the current tab note
       game.isCorrect = noteName === currentTab.noteName;
@@ -135,7 +149,7 @@ Rune.initLogic({
       if (game.isCorrect) {
         game.score += 1;
 
-        if (game.currentNoteIndex + 1 === tabs.length) {
+        if (game.currentNoteIndex + 1 === game.tabs.length) {
           // Determine winners and losers based on the score
           const winners: Record<string, "WON" | "LOST" | number> = {};
           const losers: Record<string, "WON" | "LOST" | number> = {};
@@ -153,12 +167,13 @@ Rune.initLogic({
             players: { ...winners, ...losers },
           });
         } else {
-          game.currentNoteIndex = (game.currentNoteIndex + 1) % tabs.length;
+          game.currentNoteIndex =
+            (game.currentNoteIndex + 1) % game.tabs.length;
         }
       } else {
         game.score -= 1;
       }
-      console.log(game.currentNoteIndex, tabs.length);
+      console.log(game.currentNoteIndex, game.tabs.length);
     },
   },
 });
