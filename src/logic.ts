@@ -139,41 +139,46 @@ Rune.initLogic({
     playNote: ({ noteName }, { game }) => {
       const currentTab = game.tabs[game.currentNoteIndex];
 
-      // Check if the played note matches the current tab note
-      game.isCorrect = noteName === currentTab.noteName;
-
-      console.log(`Active tab: ${currentTab.noteName}`);
-      console.log(`Is correct: ${game.isCorrect}`);
-
-      // Update score based on correctness
-      if (game.isCorrect) {
-        game.score += 1;
-
-        if (game.currentNoteIndex + 1 === game.tabs.length) {
-          // Determine winners and losers based on the score
-          const winners: Record<string, "WON" | "LOST" | number> = {};
-          const losers: Record<string, "WON" | "LOST" | number> = {};
-
-          Object.keys(game.playerKeys).forEach((playerId) => {
-            if (game.score > 0) {
-              winners[playerId] = "WON";
-            } else {
-              losers[playerId] = "LOST";
-            }
-          });
-
-          // Call Rune.gameOver with the results
-          Rune.gameOver({
-            players: { ...winners, ...losers },
-          });
-        } else {
-          game.currentNoteIndex =
-            (game.currentNoteIndex + 1) % game.tabs.length;
-        }
+      if (currentTab.noteName === "P") {
+        console.log("We are in pause");
+        game.currentNoteIndex += 1;
       } else {
-        game.score -= 1;
+        // Check if the played note matches the current tab note
+        game.isCorrect = noteName === currentTab.noteName;
+
+        console.log(`Active tab: ${currentTab.noteName}`);
+        console.log(`Is correct: ${game.isCorrect}`);
+
+        // Update score based on correctness
+        if (game.isCorrect) {
+          game.score += 1;
+
+          if (game.currentNoteIndex + 1 === game.tabs.length) {
+            // Determine winners and losers based on the score
+            const winners: Record<string, "WON" | "LOST" | number> = {};
+            const losers: Record<string, "WON" | "LOST" | number> = {};
+
+            Object.keys(game.playerKeys).forEach((playerId) => {
+              if (game.score > 0) {
+                winners[playerId] = "WON";
+              } else {
+                losers[playerId] = "LOST";
+              }
+            });
+
+            // Call Rune.gameOver with the results
+            Rune.gameOver({
+              players: { ...winners, ...losers },
+            });
+          } else {
+            game.currentNoteIndex =
+              (game.currentNoteIndex + 1) % game.tabs.length;
+          }
+        } else {
+          game.score -= 1;
+        }
+        console.log(game.currentNoteIndex, game.tabs.length);
       }
-      console.log(game.currentNoteIndex, game.tabs.length);
     },
   },
 });
