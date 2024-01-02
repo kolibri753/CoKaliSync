@@ -339,3 +339,79 @@ export const tabsHard: { noteName: string; duration: number }[] = [
   { noteName: "B4", duration: 3000 },
   { noteName: "A4", duration: 3000 },
 ];
+
+export const tabsExpert: { noteName: string; duration: number }[] = [
+  { noteName: "G4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "C5", duration: 3000 },
+  { noteName: "D5", duration: 3000 },
+
+  { noteName: "P", duration: 300 },
+
+  { noteName: "A4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "G4", duration: 3000 },
+  { noteName: "E4", duration: 3000 },
+
+  { noteName: "P", duration: 300 },
+
+  { noteName: "G4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "C5", duration: 3000 },
+  { noteName: "D5", duration: 3000 },
+
+  { noteName: "P", duration: 300 },
+
+  { noteName: "G4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "G4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+
+  { noteName: "P", duration: 300 },
+
+  { noteName: "E5", duration: 3000 },
+  { noteName: "D5", duration: 3000 },
+  { noteName: "C5", duration: 3000 },
+  { noteName: "D5", duration: 3000 },
+  { noteName: "C5", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "G4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "G4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+
+  { noteName: "P", duration: 300 },
+
+  { noteName: "E5", duration: 3000 },
+  { noteName: "D5", duration: 3000 },
+  { noteName: "C5", duration: 3000 },
+  { noteName: "D5", duration: 3000 },
+  { noteName: "C5", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "G4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "G4", duration: 3000 },
+  { noteName: "E4", duration: 3000 },
+  { noteName: "G4", duration: 3000 },
+  { noteName: "G4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+
+  { noteName: "P", duration: 300 },
+
+  { noteName: "C5", duration: 3000 },
+  { noteName: "D5", duration: 3000 },
+  { noteName: "G4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+  { noteName: "G4", duration: 3000 },
+  { noteName: "A4", duration: 3000 },
+];

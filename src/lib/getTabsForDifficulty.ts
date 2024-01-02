@@ -1,5 +1,5 @@
 import { Difficulty } from "../types/DifficultyTypes";
-import { tabsEasy, tabsMedium, tabsHard } from "../data/tabsData";
+import { tabsEasy, tabsMedium, tabsHard, tabsExpert } from "../data/tabsData";
 
 export const getTabsForDifficulty = (difficulty: Difficulty) => {
   switch (difficulty) {
@@ -10,7 +10,7 @@ export const getTabsForDifficulty = (difficulty: Difficulty) => {
     case "Hard":
       return [...tabsHard];
     case "Expert":
-      return [];
+      return [...tabsExpert];
     default:
       throw new Error("Unknown difficulty");
   }
