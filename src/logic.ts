@@ -137,6 +137,11 @@ Rune.initLogic({
       game.tabs = getTabsForDifficulty(difficulty);
     },
     playNote: ({ noteName }, { game }) => {
+      if (game.difficulty === "Creative") {
+        game.score++;
+        return;
+      }
+
       const currentTab = game.tabs[game.currentNoteIndex];
 
       if (currentTab.noteName === "P") {

@@ -11,6 +11,8 @@ export const getTabsForDifficulty = (difficulty: Difficulty) => {
       return [...tabsHard];
     case "Expert":
       return [...tabsExpert];
+    case "Creative":
+      return [];
     default:
       throw new Error("Unknown difficulty");
   }
