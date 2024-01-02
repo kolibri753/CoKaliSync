@@ -1,5 +1,5 @@
 import { Difficulty } from "../types/DifficultyTypes";
-import { tabsEasy, tabsMedium } from "../data/tabsData";
+import { tabsEasy, tabsMedium, tabsHard } from "../data/tabsData";
 
 export const getTabsForDifficulty = (difficulty: Difficulty) => {
   switch (difficulty) {
@@ -8,7 +8,7 @@ export const getTabsForDifficulty = (difficulty: Difficulty) => {
     case "Medium":
       return [...tabsMedium];
     case "Hard":
-      return [];
+      return [...tabsHard];
     case "Expert":
       return [];
     default:
