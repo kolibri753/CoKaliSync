@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./startMenu.css";
-import { Difficulty, DifficultyTypes } from "../../types/DifficultyTypes";
+import { Difficulty, DifficultyTypes, DifficultyDescriptions } from "../../types/DifficultyTypes";
 
 interface StartMenuProps {
   onSelectDifficulty: (difficulty: Difficulty) => void;
@@ -8,7 +8,8 @@ interface StartMenuProps {
 
 const StartMenu: React.FC<StartMenuProps> = ({ onSelectDifficulty }) => {
   const difficulties: Difficulty[] = Object.values(DifficultyTypes);
-  const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | null>(null);
+  const [selectedDifficulty, setSelectedDifficulty] =
+    useState<Difficulty | null>(null);
 
   const handleSelect = (difficulty: Difficulty) => {
     console.log("Selected Difficulty:", difficulty);
@@ -21,21 +22,27 @@ const StartMenu: React.FC<StartMenuProps> = ({ onSelectDifficulty }) => {
       onSelectDifficulty(selectedDifficulty);
     }
   };
-  
+
   return (
     <div className="menu__container">
-      <h2 className="menu__title">Choose Difficulty</h2>
-      <div className="menu__list">
+      <h2 className="menu__action">Choose Difficulty</h2>
+      <ul className="menu__list">
         {difficulties.map((difficulty) => (
-          <button
-            key={difficulty}
-            className={`menu__button ${selectedDifficulty === difficulty ? "selected" : ""}`}
-            onClick={() => handleSelect(difficulty)}
-          >
-            {difficulty}
-          </button>
+          <li key={difficulty} className="menu__item">
+            <button
+              className={`menu__button ${
+                selectedDifficulty === difficulty ? "selected" : ""
+              }`}
+              onClick={() => handleSelect(difficulty)}
+            >
+              <span className="menu__title">{difficulty}</span>
+              <p className="menu__description">
+                {DifficultyDescriptions[difficulty]}
+              </p>
+            </button>
+          </li>
         ))}
-      </div>
+      </ul>
       <button
         className="start__button"
         onClick={handleStart}
