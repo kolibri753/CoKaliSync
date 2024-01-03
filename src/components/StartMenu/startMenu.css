@@ -1,3 +1,76 @@
+.menu__container {
+  height: 100%;
+  border-radius: 0.5em;
+  padding: 1em;
+  text-align: center;
+}
+
+.menu__action {
+  font-size: 2em;
+  margin: 0 0 1em 0;
+}
+
+.menu__list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu__item {
+  margin-bottom: 1.8em;
+  position: relative;
+}
+
+.menu__button {
+  width: 100%;
+  background-color: #4caf50;
+  color: #fff;
+  padding: 0.2em;
+  border: 0.1em solid #2f7431;
+  cursor: pointer;
+  font-size: 1.2em;
+  border-radius: 0.5em;
+  transition: all 0.3s;
+}
+
 .menu__button.selected {
-  background-color: #45a049;
+  background-color: #2e7631;
+  border-color: #1b481c;
+}
+
+.menu__button:hover {
+  background-color: #2e7631;
+}
+
+.menu__title {
+  position: absolute;
+  top: -1em;
+  left: 2em;
+  color: #000;
+}
+
+.menu__description {
+  font-size: 0.8em;
+  margin: 0;
+  text-align: left;
+}
+
+.start__button {
+  background-color: #3498db;
+  padding: 0.5em;
+  color: #fff;
+  border: 0.1em solid #256895;
+  cursor: pointer;
+  border-radius: 1em;
+  transition: background-color 0.3s;
+  font-size: 1.2em;
+}
+
+.start__button:hover {
+  background-color: #2980b9;
+}
+
+.start__button:disabled {
+  background-color: #ccc;
+  border-color: #808080;
+  cursor: not-allowed;
 }
