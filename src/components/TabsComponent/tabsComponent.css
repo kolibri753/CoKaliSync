@@ -1,6 +1,7 @@
 .tabs__container {
   width: 100%;
-  padding: 10px;
+  min-height: 2em;
+  padding: 0.5em;
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
@@ -18,7 +19,7 @@
   left: 0;
   width: 100%;
   transform: translateY(-50%);
-  height: 1em;
+  height: 2em;
   background-image: url("/src/assets/images/rope-bg.png");
   background-size: cover;
   background-position: center;

@@ -2,6 +2,7 @@ import type { RuneClient } from "rune-games-sdk/multiplayer";
 import { KalimbaNote } from "./types/KalimbaNote";
 import { getTabsForDifficulty } from "./lib/getTabsForDifficulty";
 import { Difficulty } from "./types/DifficultyTypes";
+import { Tab } from "./types/Tab";
 
 // Define the type for player keys
 type PlayerKeys = { [playerId: string]: string[] };
@@ -15,7 +16,7 @@ export interface GameState {
   isCorrect: boolean | true;
   score: number | 0;
   difficulty: Difficulty | null;
-  tabs: { noteName: string; duration: number }[];
+  tabs: Tab[];
 }
 
 // Define the game actions
@@ -90,7 +91,7 @@ function generateKalimbaNotes(): KalimbaNote[] {
 
 // Initialize the Rune logic
 Rune.initLogic({
-  minPlayers: 2,
+  minPlayers: 1,
   maxPlayers: 2,
   setup: (allPlayerIds) => {
     const kalimbaNotes = generateKalimbaNotes();
