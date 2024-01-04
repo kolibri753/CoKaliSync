@@ -25,21 +25,6 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    const currentTab = game?.tabs[game?.currentNoteIndex];
-    if (currentTab?.noteName === "P") {
-      console.log("We are in pause");
-      setTimeout(() => {
-        const nextNote = game?.tabs[game?.currentNoteIndex + 1];
-        if (nextNote) {
-          Rune.actions.playNote({
-            noteName: nextNote.noteName,
-          });
-        }
-      }, currentTab?.duration || 0);
-    }
-  }, [game?.tabs, game?.currentNoteIndex]);
-
   const handleNoteClick = (note: string) => {
     console.log(`Clicked note: ${note}`);
   };

@@ -1,9 +1,10 @@
 import React from "react";
 import "./TabsComponent.css";
 import { GameState } from "../../logic";
+import { Tab } from "../../types/Tab";
 
 interface TabsComponentProps {
-  tabs: { noteName: string; duration: number }[];
+  tabs: Tab[];
   onNotePlayed: (note: string, isCorrect: boolean) => void;
   game: GameState;
 }
