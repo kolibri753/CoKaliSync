@@ -1,18 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import "./kalimbaComponent.css";
 import { KalimbaNote } from "../../types/KalimbaNote";
 
 interface KalimbaComponentProps {
   notes: KalimbaNote[];
   onNoteClick: (note: string) => void;
-  playerId: string;
   playerKeys: string[];
 }
 
 const KalimbaComponent: React.FC<KalimbaComponentProps> = ({
   notes,
   onNoteClick,
-  playerId,
   playerKeys,
 }) => {
   const containerClassName =
