@@ -7,23 +7,31 @@ import ScoreComponent from "./components/ScoreComponent/ScoreComponent";
 import StartMenu from "./components/StartMenu/StartMenu";
 import { Difficulty } from "./types/DifficultyTypes";
 import playSounds from "./lib/playSounds";
+import { assignNotesToPlayers } from "./lib/assignNotesToPlayers";
+import { useScreenHeight } from "./lib/useScreenHeight";
 
 function App() {
   const [game, setGame] = useState<GameState | undefined>(undefined);
   const [playerId, setPlayerId] = useState<string | undefined>(undefined);
+  const screenHeight = useScreenHeight();
 
   useEffect(() => {
     Rune.initClient({
-      onChange: ({ game, yourPlayerId, previousGame, action }) => {
+      onChange: ({ game, yourPlayerId, action }) => {
         setGame(game);
         setPlayerId(yourPlayerId);
         console.log("Updated game state:", game);
         console.log("Your Player ID:", yourPlayerId);
 
-        playSounds(game, previousGame, action);
+        playSounds(action);
       },
     });
   }, []);
+
+  const { kalimbaNotes, playerKeys } = assignNotesToPlayers(
+    game?.allPlayerIds || [],
+    screenHeight
+  );
 
   const handleNoteClick = (note: string) => {
     console.log(`Clicked note: ${note}`);
@@ -48,10 +56,9 @@ function App() {
           />
           <ScoreComponent score={game.score} />
           <KalimbaComponent
-            notes={game.kalimbaNotes}
+            notes={kalimbaNotes}
             onNoteClick={handleNoteClick}
-            playerId={playerId}
-            playerKeys={game.playerKeys[playerId]}
+            playerKeys={playerKeys[playerId]}
           />
         </>
       ) : (
