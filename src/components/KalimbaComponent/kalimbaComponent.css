@@ -95,6 +95,9 @@
 
   z-index: 1;
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1.11);
+
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
 .kalimba__key:hover {
