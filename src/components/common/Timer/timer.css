@@ -1,0 +1,8 @@
+.timer {
+  min-width: 2.25em;
+}
+
+.timer__value {
+  font-size: 1em;
+  font-weight: 500;
+}

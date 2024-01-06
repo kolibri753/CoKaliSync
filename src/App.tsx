@@ -7,6 +7,7 @@ import ScoreComponent from "./components/ScoreComponent/ScoreComponent";
 import StartMenu from "./components/StartMenu/StartMenu";
 import ModalComponent from "./components/ModalComponent/ModalComponent";
 import HelpButton from "./components/common/HelpButton/HelpButton";
+import Timer from "./components/common/Timer/Timer";
 import { Difficulty } from "./types/DifficultyTypes";
 import { assignNotesToPlayers } from "./lib/assignNotesToPlayers";
 import { useScreenHeight } from "./lib/useScreenHeight";
@@ -41,16 +42,16 @@ function App() {
     console.log(`Clicked note: ${note}`);
   };
 
-  const startGame = (difficulty: Difficulty) => {
-    Rune.actions.startGame({ difficulty });
-  };
-
   const handleHelp = () => {
     setIsHelpModalOpen(true);
   };
 
   const closeHelpModal = () => {
     setIsHelpModalOpen(false);
+  };
+
+  const startGame = (difficulty: Difficulty) => {
+    Rune.actions.startGame({ difficulty });
   };
 
   if (!game || !playerId) {
@@ -69,6 +70,7 @@ function App() {
           <div className="container__stats">
             <HelpButton onClick={handleHelp} />
             <ScoreComponent score={game.score} />
+            <Timer game={game} />
           </div>
           <KalimbaComponent
             notes={kalimbaNotes}
