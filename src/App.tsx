@@ -6,9 +6,10 @@ import TabsComponent from "./components/TabsComponent/TabsComponent";
 import ScoreComponent from "./components/ScoreComponent/ScoreComponent";
 import StartMenu from "./components/StartMenu/StartMenu";
 import { Difficulty } from "./types/DifficultyTypes";
-import playSounds from "./lib/playSounds";
 import { assignNotesToPlayers } from "./lib/assignNotesToPlayers";
 import { useScreenHeight } from "./lib/useScreenHeight";
+import playSounds from "./lib/playSounds";
+import "./generated/preload";
 
 function App() {
   const [game, setGame] = useState<GameState | undefined>(undefined);
