@@ -5,9 +5,32 @@
   text-align: center;
 }
 
+.menu__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2em;
+}
+
 .menu__action {
-  font-size: 2em;
-  margin: 0 0 1em 0;
+  font-size: 1.6em;
+  margin: 0;
+}
+
+.menu__helpButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  font-size: 1.5em;
+  width: 1.5em;
+  height: 1.5em;
+  background-color: #3498db;
+  border: 0.1em solid #256895;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
 }
 
 .menu__list {
@@ -55,12 +78,12 @@
 }
 
 .start__button {
-  background-color: #3498db;
-  padding: 0.5em;
   color: #fff;
+  padding: 0.5em;
+  background-color: #3498db;
   border: 0.1em solid #256895;
-  cursor: pointer;
   border-radius: 1em;
+  cursor: pointer;
   transition: background-color 0.3s;
   font-size: 1.2em;
 }

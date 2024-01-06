@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import "./startMenu.css";
-import { Difficulty, DifficultyTypes, DifficultyDescriptions } from "../../types/DifficultyTypes";
+import {
+  Difficulty,
+  DifficultyTypes,
+  DifficultyDescriptions,
+} from "../../types/DifficultyTypes";
+import ModalComponent from "../../components/ModalComponent/ModalComponent";
 
 interface StartMenuProps {
   onSelectDifficulty: (difficulty: Difficulty) => void;
@@ -10,6 +15,7 @@ const StartMenu: React.FC<StartMenuProps> = ({ onSelectDifficulty }) => {
   const difficulties: Difficulty[] = Object.values(DifficultyTypes);
   const [selectedDifficulty, setSelectedDifficulty] =
     useState<Difficulty | null>(null);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
 
   const handleSelect = (difficulty: Difficulty) => {
     console.log("Selected Difficulty:", difficulty);
@@ -23,9 +29,22 @@ const StartMenu: React.FC<StartMenuProps> = ({ onSelectDifficulty }) => {
     }
   };
 
+  const handleHelp = () => {
+    setIsHelpModalOpen(true);
+  };
+
+  const closeHelpModal = () => {
+    setIsHelpModalOpen(false);
+  };
+
   return (
     <div className="menu__container">
-      <h2 className="menu__action">Choose Difficulty</h2>
+      <div className="menu__header">
+        <h2 className="menu__action">Choose Difficulty</h2>
+        <button className="menu__helpButton" onClick={handleHelp}>
+          ?
+        </button>
+      </div>
       <ul className="menu__list">
         {difficulties.map((difficulty) => (
           <li key={difficulty} className="menu__item">
@@ -50,6 +69,10 @@ const StartMenu: React.FC<StartMenuProps> = ({ onSelectDifficulty }) => {
       >
         Start Game
       </button>
+
+      {isHelpModalOpen && (
+        <ModalComponent isOpen={isHelpModalOpen} onClose={closeHelpModal} />
+      )}
     </div>
   );
 };
