@@ -5,9 +5,8 @@ import { join } from 'path';
 const soundFolderPath = './public/kalimbaKeySounds';
 const imageFolderPath = './src/assets/images';
 
-// Get a list of files in the sound folder
+// Get a list of files 
 const soundFiles = readdirSync(soundFolderPath);
-// Get a list of files in the image folder
 const imageFiles = readdirSync(imageFolderPath);
 
 // Generate comments
@@ -26,3 +25,7 @@ const formattedPreloadCode = allPreloadCode.replace(/\\/g, '/');
 
 // Write the generated code to a file
 writeFileSync('./src/generated/preload.ts', formattedPreloadCode);
+
+// Console logs
+console.warn('\nWarning: Ensure to follow the production guidelines for sound and image paths.\n');
+console.log('\nPreloading script generated successfully. Check the "preload.ts" file in the "src/generated" folder.\n');
