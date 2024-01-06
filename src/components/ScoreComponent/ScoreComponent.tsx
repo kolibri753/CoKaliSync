@@ -1,5 +1,5 @@
 import React from 'react';
-import './ScoreComponent.css';
+import './scoreComponent.css';
 
 interface ScoreComponentProps {
   score: number;

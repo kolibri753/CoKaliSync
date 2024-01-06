@@ -5,6 +5,8 @@ import KalimbaComponent from "./components/KalimbaComponent/KalimbaComponent";
 import TabsComponent from "./components/TabsComponent/TabsComponent";
 import ScoreComponent from "./components/ScoreComponent/ScoreComponent";
 import StartMenu from "./components/StartMenu/StartMenu";
+import ModalComponent from "./components/ModalComponent/ModalComponent";
+import HelpButton from "./components/common/HelpButton/HelpButton";
 import { Difficulty } from "./types/DifficultyTypes";
 import { assignNotesToPlayers } from "./lib/assignNotesToPlayers";
 import { useScreenHeight } from "./lib/useScreenHeight";
@@ -14,6 +16,7 @@ import "./generated/preload";
 function App() {
   const [game, setGame] = useState<GameState | undefined>(undefined);
   const [playerId, setPlayerId] = useState<string | undefined>(undefined);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const screenHeight = useScreenHeight();
 
   useEffect(() => {
@@ -42,6 +45,14 @@ function App() {
     Rune.actions.startGame({ difficulty });
   };
 
+  const handleHelp = () => {
+    setIsHelpModalOpen(true);
+  };
+
+  const closeHelpModal = () => {
+    setIsHelpModalOpen(false);
+  };
+
   if (!game || !playerId) {
     return <div>Loading...</div>;
   }
@@ -55,7 +66,10 @@ function App() {
             onNotePlayed={handleNoteClick}
             game={game}
           />
-          <ScoreComponent score={game.score} />
+          <div className="container__stats">
+            <HelpButton onClick={handleHelp} />
+            <ScoreComponent score={game.score} />
+          </div>
           <KalimbaComponent
             notes={kalimbaNotes}
             onNoteClick={handleNoteClick}
@@ -64,6 +78,9 @@ function App() {
         </>
       ) : (
         <StartMenu onSelectDifficulty={startGame} />
+      )}
+      {isHelpModalOpen && (
+        <ModalComponent isOpen={isHelpModalOpen} onClose={closeHelpModal} />
       )}
     </main>
   );

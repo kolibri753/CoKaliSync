@@ -6,6 +6,7 @@ import {
   DifficultyDescriptions,
 } from "../../types/DifficultyTypes";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
+import HelpButton from "../common/HelpButton/HelpButton";
 
 interface StartMenuProps {
   onSelectDifficulty: (difficulty: Difficulty) => void;
@@ -41,9 +42,7 @@ const StartMenu: React.FC<StartMenuProps> = ({ onSelectDifficulty }) => {
     <div className="menu__container">
       <div className="menu__header">
         <h2 className="menu__action">Choose Difficulty</h2>
-        <button className="menu__helpButton" onClick={handleHelp}>
-          ?
-        </button>
+        <HelpButton onClick={handleHelp} />
       </div>
       <ul className="menu__list">
         {difficulties.map((difficulty) => (

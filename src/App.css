@@ -11,3 +11,9 @@ html {
   text-align: center;
   background: #fff9f2;
 }
+
+.container__stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
