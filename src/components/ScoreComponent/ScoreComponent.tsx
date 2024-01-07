@@ -1,14 +1,21 @@
-import React from 'react';
-import './scoreComponent.css';
+import React from "react";
+import "./scoreComponent.css";
 
 interface ScoreComponentProps {
   score: number;
+  difficulty: string;
 }
 
-const ScoreComponent: React.FC<ScoreComponentProps> = ({ score }) => {
+const ScoreComponent: React.FC<ScoreComponentProps> = ({
+  score,
+  difficulty,
+}) => {
   return (
-    <div className={`score__container ${score >= 0 ? 'positive' : 'negative'}`}>
-      <p className="score__value">Score: {score}</p>
+    <div className={`score__container ${score >= 0 ? "positive" : "negative"}`}>
+      <p className="score__value">
+        <span className="score__level">{difficulty}: </span>
+        {score}
+      </p>
     </div>
   );
 };

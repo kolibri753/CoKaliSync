@@ -67,7 +67,7 @@ function App() {
           />
           <div className="container__stats">
             <HelpButton onClick={handleHelp} />
-            <ScoreComponent score={game.score} />
+            <ScoreComponent score={game.score} difficulty={game.difficulty} />
             <Timer game={game} />
           </div>
           <KalimbaComponent

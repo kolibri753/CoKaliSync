@@ -23,6 +23,10 @@
   border-color: #bd0000;
 }
 
+.score__level {
+ font-size: 0.8em; 
+}
+
 .score__value {
   margin: 0;
 }
