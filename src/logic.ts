@@ -28,7 +28,7 @@ declare global {
 
 // Initialize the Rune logic
 Rune.initLogic({
-  minPlayers: 1,
+  minPlayers: 2,
   maxPlayers: 2,
   setup: (allPlayerIds) => {
     const currentNoteIndex = 0;
@@ -69,10 +69,7 @@ Rune.initLogic({
       const currentTab = game.tabs[game.currentNoteIndex];
 
       // Check if the played note matches the current tab note
-      game.isCorrect = noteName === currentTab.noteName;
-
-      console.log(`Active tab: ${currentTab.noteName}`);
-      console.log(`Is correct: ${game.isCorrect}`);
+      game.isCorrect = noteName === currentTab.noteName
 
       // Update score based on correctness
       if (game.isCorrect) {

@@ -33,8 +33,10 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             1. Pick a difficulty and hit{" "}
             <span className="blue">"Start Game"</span>.
           </p>
-          <p className="modal__text">2. Your notes show up on colorful tabs.</p>
-          <p className="modal__text">3. Find the kalimba key and play it!</p>
+          <p className="modal__text">
+            2. The notes 🎵 you need to play are shown on tabs.
+          </p>
+          <p className="modal__text">3. Find the kalimba key 🎹 and tap on it!</p>
           <p className="modal__text">
             4. Hit it right, see green, <span className="green">score up</span>,
             and move on!
@@ -44,7 +46,7 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             again.
           </p>
           <p className="modal__text">
-            6. Nail it to move forward. After all notes, check your results!
+            6. After all notes, check your results! Share them with friends and see who did the best!
           </p>
         </div>
         <p className="modal__bottom">

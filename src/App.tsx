@@ -25,9 +25,7 @@ function App() {
       onChange: ({ game, yourPlayerId, action }) => {
         setGame(game);
         setPlayerId(yourPlayerId);
-        console.log("Updated game state:", game);
-        console.log("Your Player ID:", yourPlayerId);
-
+        console.log("Game state:", game);
         playSounds(action);
       },
     });

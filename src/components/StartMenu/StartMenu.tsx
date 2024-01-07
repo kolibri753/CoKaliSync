@@ -19,13 +19,11 @@ const StartMenu: React.FC<StartMenuProps> = ({ onSelectDifficulty }) => {
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
 
   const handleSelect = (difficulty: Difficulty) => {
-    console.log("Selected Difficulty:", difficulty);
     setSelectedDifficulty(difficulty);
   };
 
   const handleStart = () => {
     if (selectedDifficulty) {
-      console.log("Starting game with difficulty:", selectedDifficulty);
       onSelectDifficulty(selectedDifficulty);
     }
   };
