@@ -14,7 +14,7 @@ const KalimbaComponent: React.FC<KalimbaComponentProps> = ({
   playerKeys,
 }) => {
   const containerClassName =
-    playerKeys.length === 8 ? "eight-notes" : "nine-notes";
+    playerKeys && playerKeys.length === 8 ? "eight-notes" : "nine-notes";
 
   return (
     <div className={`kalimba__container ${containerClassName}`}>
@@ -27,7 +27,8 @@ const KalimbaComponent: React.FC<KalimbaComponentProps> = ({
             Rune.actions.playNote({ noteName: note.name });
           }}
           style={{
-            display: playerKeys.includes(note.name) ? "flex" : "none",
+            display:
+              playerKeys && playerKeys.includes(note.name) ? "flex" : "none",
             height: note.height,
           }}
         >

@@ -52,13 +52,9 @@ function App() {
     Rune.actions.startGame({ difficulty });
   };
 
-  if (!game || !playerId) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <main className="container">
-      {game.difficulty ? (
+      {game?.difficulty ? (
         <>
           <TabsComponent
             tabs={game.tabs}
@@ -74,11 +70,11 @@ function App() {
             notes={kalimbaNotes}
             onNoteClick={handleNoteClick}
             playerKeys={
-              (
-                game.playerKeys.find((keys) =>
-                  Object.prototype.hasOwnProperty.call(keys, playerId)
-                ) as Record<string, string[]>
-              )[playerId]
+              (game.playerKeys.find(
+                (keys) =>
+                  keys &&
+                  Object.prototype.hasOwnProperty.call(keys, playerId || "")
+              ) || {})[playerId || ""]
             }
           />
         </>
