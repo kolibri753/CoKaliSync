@@ -2,6 +2,9 @@ import type { RuneClient } from "rune-games-sdk/multiplayer";
 import { getTabsForDifficulty } from "./lib/getTabsForDifficulty";
 import { Difficulty } from "./types/DifficultyTypes";
 import { Tab } from "./types/Tab";
+import { PlayerKeys } from "./types/PlayerKeys";
+import { assignNotesToPlayers } from "./lib/assignNotesToPlayers";
+import { notesHeight } from "./types/KalimbaNote";
 
 // Define the game state interface
 export interface GameState {
@@ -12,6 +15,7 @@ export interface GameState {
   difficulty: Difficulty | null;
   tabs: Tab[];
   allPlayerIds: string[];
+  playerKeys: PlayerKeys[];
 }
 
 // Define the game actions
@@ -32,6 +36,10 @@ Rune.initLogic({
   maxPlayers: 2,
   setup: (allPlayerIds) => {
     const currentNoteIndex = 0;
+    const playerKeys = allPlayerIds.map(
+      (playerId) =>
+        assignNotesToPlayers(allPlayerIds, playerId, notesHeight).playerKeys
+    );
 
     return {
       count: 0,
@@ -41,6 +49,7 @@ Rune.initLogic({
       difficulty: null,
       tabs: [],
       allPlayerIds: null || allPlayerIds,
+      playerKeys: playerKeys,
     };
   },
   // update: (obj) => {
@@ -69,7 +78,7 @@ Rune.initLogic({
       const currentTab = game.tabs[game.currentNoteIndex];
 
       // Check if the played note matches the current tab note
-      game.isCorrect = noteName === currentTab.noteName
+      game.isCorrect = noteName === currentTab.noteName;
 
       // Update score based on correctness
       if (game.isCorrect) {

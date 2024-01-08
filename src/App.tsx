@@ -13,12 +13,15 @@ import { assignNotesToPlayers } from "./lib/assignNotesToPlayers";
 import { useScreenHeight } from "./lib/useScreenHeight";
 import playSounds from "./lib/playSounds";
 import "./generated/preload";
+import { useNoteHeights } from "./lib/useNoteHeights";
+import { notesHeight } from "./types/KalimbaNote";
 
 function App() {
   const [game, setGame] = useState<GameState | undefined>(undefined);
   const [playerId, setPlayerId] = useState<string | undefined>(undefined);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const screenHeight = useScreenHeight();
+  const adjustedNoteHeights = useNoteHeights(notesHeight, screenHeight);
 
   useEffect(() => {
     Rune.initClient({
@@ -31,9 +34,10 @@ function App() {
     });
   }, []);
 
-  const { kalimbaNotes, playerKeys } = assignNotesToPlayers(
+  const { kalimbaNotes } = assignNotesToPlayers(
     game?.allPlayerIds || [],
-    screenHeight
+    playerId || "",
+    adjustedNoteHeights
   );
 
   const handleNoteClick = (note: string) => {
@@ -73,7 +77,13 @@ function App() {
           <KalimbaComponent
             notes={kalimbaNotes}
             onNoteClick={handleNoteClick}
-            playerKeys={playerKeys[playerId]}
+            playerKeys={
+              (
+                game.playerKeys.find((keys) =>
+                  keys.hasOwnProperty(playerId)
+                ) as Record<string, string[]>
+              )[playerId]
+            }
           />
         </>
       ) : (
