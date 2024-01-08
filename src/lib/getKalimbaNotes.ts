@@ -1,8 +1,8 @@
-import { KalimbaNote, notesDistribution } from "../types/KalimbaNote";
+import { KalimbaNoteType, notesDistribution } from "../types/KalimbaNote";
 
-export function getKalimbaNotes(noteHeights: string[]): KalimbaNote[] {
+export function getKalimbaNotes(noteHeights: string[]): KalimbaNoteType[] {
   return notesDistribution.map((note, index) => {
     const height = noteHeights[index];
-    return new KalimbaNote(note, height);
+    return { name: note, height: height };
   });
 }

@@ -76,7 +76,7 @@ function App() {
             playerKeys={
               (
                 game.playerKeys.find((keys) =>
-                  keys.hasOwnProperty(playerId)
+                  Object.prototype.hasOwnProperty.call(keys, playerId)
                 ) as Record<string, string[]>
               )[playerId]
             }

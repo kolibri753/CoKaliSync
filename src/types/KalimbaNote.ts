@@ -8,6 +8,11 @@ export class KalimbaNote {
   }
 }
 
+export type KalimbaNoteType = {
+  name: string;
+  height: string;
+};
+
 export const notesDistribution: string[] = [
   "D6",
   "B5",
