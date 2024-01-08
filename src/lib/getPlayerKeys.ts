@@ -7,18 +7,16 @@ export function getPlayerKeys(
   noteHeights: string[]
 ): PlayerKeys {
   const kalimbaNotes = getKalimbaNotes(noteHeights);
+  const notesPerPlayer = Math.ceil(kalimbaNotes.length / 2);
 
+  const playerKeys: PlayerKeys = {};
   const currentPlayerIndex = allPlayerIds.indexOf(currentPlayerId);
-  const startIndex =
-    currentPlayerIndex * (kalimbaNotes.length / allPlayerIds.length);
-  const endIndex =
-    (currentPlayerIndex + 1) * (kalimbaNotes.length / allPlayerIds.length);
+  const startIndex = currentPlayerIndex * notesPerPlayer;
+  const endIndex = Math.min(startIndex + notesPerPlayer, kalimbaNotes.length);
 
-  const playerKeys: PlayerKeys = {
-    [currentPlayerId]: kalimbaNotes
-      .slice(startIndex, endIndex)
-      .map((note) => note.name),
-  };
+  playerKeys[currentPlayerId] = kalimbaNotes
+    .slice(startIndex, endIndex)
+    .map((note) => note.name);
 
   return playerKeys;
 }

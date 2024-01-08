@@ -32,7 +32,7 @@ declare global {
 
 // Initialize the Rune logic
 Rune.initLogic({
-  minPlayers: 2,
+  minPlayers: 1,
   maxPlayers: 2,
   setup: (allPlayerIds) => {
     const currentNoteIndex = 0;
@@ -106,6 +106,39 @@ Rune.initLogic({
         }
       } else {
         game.score -= 1;
+      }
+    },
+  },
+  events: {
+    playerJoined: (playerId, { game }) => {
+      // Add the new player to the game
+      game.allPlayerIds.push(playerId);
+
+      // Assign playerKeys to the new player
+      const playerKeys = getPlayerKeys(
+        game.allPlayerIds,
+        playerId,
+        notesHeight
+      );
+      game.playerKeys.push(playerKeys);
+    },
+    playerLeft: (playerId, { game }) => {
+      // Remove the player from the game
+      const playerIndex = game.allPlayerIds.indexOf(playerId);
+      if (playerIndex !== -1) {
+        game.allPlayerIds.splice(playerIndex, 1);
+        game.playerKeys.splice(playerIndex, 1);
+
+        // If there's at least one player remaining, update the notes for the next player
+        if (game.allPlayerIds.length > 0) {
+          const nextPlayerId = game.allPlayerIds[0];
+          const nextPlayerKeys = getPlayerKeys(
+            game.allPlayerIds,
+            nextPlayerId,
+            notesHeight
+          );
+          game.playerKeys[0] = nextPlayerKeys;
+        }
       }
     },
   },
