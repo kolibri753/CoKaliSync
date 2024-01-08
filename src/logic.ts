@@ -3,7 +3,7 @@ import { getTabsForDifficulty } from "./lib/getTabsForDifficulty";
 import { Difficulty } from "./types/DifficultyTypes";
 import { Tab } from "./types/Tab";
 import { PlayerKeys } from "./types/PlayerKeys";
-import { assignNotesToPlayers } from "./lib/assignNotesToPlayers";
+import { getPlayerKeys } from "./lib/getPlayerKeys";
 import { notesHeight } from "./types/KalimbaNote";
 
 // Define the game state interface
@@ -36,9 +36,8 @@ Rune.initLogic({
   maxPlayers: 2,
   setup: (allPlayerIds) => {
     const currentNoteIndex = 0;
-    const playerKeys = allPlayerIds.map(
-      (playerId) =>
-        assignNotesToPlayers(allPlayerIds, playerId, notesHeight).playerKeys
+    const playerKeys = allPlayerIds.map((playerId) =>
+      getPlayerKeys(allPlayerIds, playerId, notesHeight)
     );
 
     return {
@@ -49,7 +48,7 @@ Rune.initLogic({
       difficulty: null,
       tabs: [],
       allPlayerIds: null || allPlayerIds,
-      playerKeys: playerKeys,
+      playerKeys,
     };
   },
   // update: (obj) => {

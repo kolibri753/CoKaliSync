@@ -1,18 +1,13 @@
-import { KalimbaNote, notesDistribution } from "../types/KalimbaNote";
 import { PlayerKeys } from "../types/PlayerKeys";
+import { getKalimbaNotes } from "./getKalimbaNotes";
 
-export function assignNotesToPlayers(
+export function getPlayerKeys(
   allPlayerIds: string[],
   currentPlayerId: string,
   noteHeights: string[]
-): { kalimbaNotes: KalimbaNote[]; playerKeys: PlayerKeys } {
-  // Create an array of KalimbaNote objects
-  const kalimbaNotes: KalimbaNote[] = notesDistribution.map((note, index) => {
-    const height = noteHeights[index];
-    return new KalimbaNote(note, height);
-  });
+): PlayerKeys {
+  const kalimbaNotes = getKalimbaNotes(noteHeights);
 
-  // Assign specific notes only to the current player
   const currentPlayerIndex = allPlayerIds.indexOf(currentPlayerId);
   const startIndex =
     currentPlayerIndex * (kalimbaNotes.length / allPlayerIds.length);
@@ -25,5 +20,5 @@ export function assignNotesToPlayers(
       .map((note) => note.name),
   };
 
-  return { kalimbaNotes, playerKeys };
+  return playerKeys;
 }

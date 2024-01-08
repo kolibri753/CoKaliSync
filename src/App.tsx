@@ -9,7 +9,7 @@ import ModalComponent from "./components/ModalComponent/ModalComponent";
 import HelpButton from "./components/common/HelpButton/HelpButton";
 import Timer from "./components/common/Timer/Timer";
 import { Difficulty } from "./types/DifficultyTypes";
-import { assignNotesToPlayers } from "./lib/assignNotesToPlayers";
+import { getKalimbaNotes } from "./lib/getKalimbaNotes";
 import { useScreenHeight } from "./lib/useScreenHeight";
 import playSounds from "./lib/playSounds";
 import "./generated/preload";
@@ -34,11 +34,7 @@ function App() {
     });
   }, []);
 
-  const { kalimbaNotes } = assignNotesToPlayers(
-    game?.allPlayerIds || [],
-    playerId || "",
-    adjustedNoteHeights
-  );
+  const kalimbaNotes = getKalimbaNotes(adjustedNoteHeights);
 
   const handleNoteClick = (note: string) => {
     console.log(`Clicked note: ${note}`);
