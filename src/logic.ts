@@ -51,9 +51,6 @@ Rune.initLogic({
       playerKeys,
     };
   },
-  // update: (obj) => {
-  //   console.log(obj);
-  // },
   actions: {
     increment: ({ amount }, { game }) => {
       game.count += amount;
