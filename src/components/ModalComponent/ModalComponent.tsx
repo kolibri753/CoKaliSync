@@ -49,13 +49,6 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             6. After all notes, check your results! Share them with friends and see who did the best!
           </p>
         </div>
-        <p className="modal__bottom">
-          Questions or ideas? Reach out to{" "}
-          <a href="mailto:kolibri753@gmail.com" className="blue">
-            kolibri753@gmail.com
-          </a>
-          !
-        </p>
       </div>
     </div>
   );

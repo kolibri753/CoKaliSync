@@ -59,8 +59,7 @@ body.modal-open {
   margin: 0.5em 0;
 }
 
-.modal__text .blue,
-.modal__bottom .blue {
+.modal__text .blue {
   color: #3498db;
   font-weight: 500;
 }
@@ -73,8 +72,4 @@ body.modal-open {
 .modal__text .red {
   color: #ff0000;
   font-weight: 500;
-}
-
-.modal__bottom {
-  font-size: 0.9em;
 }
