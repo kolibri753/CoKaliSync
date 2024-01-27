@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./modalComponent.css";
+import "./styles.css";
 
 interface ModalProps {
   isOpen: boolean;
@@ -34,7 +34,10 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             <span className="blue">"Start Game"</span>.
           </p>
           <p className="modal__text">
-            2. The notes 🎵 you need to play are shown on tabs.
+            2. The notes 🎵 you need to play are shown on tabs. 
+          </p>
+          <p className="modal__text">
+            Note: If you <span className="blue">can't find the note</span> on your half of kalimba, it means your friend has it.
           </p>
           <p className="modal__text">3. Find the kalimba key 🎹 and tap on it!</p>
           <p className="modal__text">

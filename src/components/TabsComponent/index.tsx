@@ -1,5 +1,5 @@
 import React from "react";
-import "./TabsComponent.css";
+import "./styles.css";
 import { GameState } from "../../logic";
 import { Tab } from "../../types/Tab";
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./timer.css";
+import "./styles.css";
 import { GameState } from "../../../logic";
 
 interface TimerProps {

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import "./startMenu.css";
+import "./styles.css";
 import {
   Difficulty,
   DifficultyTypes,
   DifficultyDescriptions,
 } from "../../types/DifficultyTypes";
-import ModalComponent from "../../components/ModalComponent/ModalComponent";
-import HelpButton from "../common/HelpButton/HelpButton";
+import ModalComponent from "../ModalComponent";
+import HelpButton from "../common/HelpButton";
 
 interface StartMenuProps {
   onSelectDifficulty: (difficulty: Difficulty) => void;

@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { GameState } from "./logic";
-import KalimbaComponent from "./components/KalimbaComponent/KalimbaComponent";
-import TabsComponent from "./components/TabsComponent/TabsComponent";
-import ScoreComponent from "./components/ScoreComponent/ScoreComponent";
-import StartMenu from "./components/StartMenu/StartMenu";
-import ModalComponent from "./components/ModalComponent/ModalComponent";
-import HelpButton from "./components/common/HelpButton/HelpButton";
-import Timer from "./components/common/Timer/Timer";
+import KalimbaComponent from "./components/KalimbaComponent";
+import TabsComponent from "./components/TabsComponent";
+import ScoreComponent from "./components/ScoreComponent";
+import StartMenu from "./components/StartMenu";
+import ModalComponent from "./components/ModalComponent";
+import HelpButton from "./components/common/HelpButton";
+import Timer from "./components/common/Timer";
 import { Difficulty } from "./types/DifficultyTypes";
+import { notesHeight } from "./types/KalimbaNote";
 import { getKalimbaNotes } from "./lib/getKalimbaNotes";
 import { useScreenHeight } from "./lib/useScreenHeight";
 import playSounds from "./lib/playSounds";
-import "./generated/preload";
 import { useNoteHeights } from "./lib/useNoteHeights";
-import { notesHeight } from "./types/KalimbaNote";
+import "./generated/preload";
 
 function App() {
   const [game, setGame] = useState<GameState | undefined>(undefined);

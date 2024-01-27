@@ -1,5 +1,5 @@
 import React from "react";
-import "./kalimbaComponent.css";
+import "./styles.css";
 import { KalimbaNote } from "../../types/KalimbaNote";
 
 interface KalimbaComponentProps {

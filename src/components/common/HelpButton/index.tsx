@@ -1,5 +1,5 @@
 import React from "react";
-import "./helpButton.css";
+import "./styles.css";
 
 interface HelpButtonProps {
   onClick: () => void;
