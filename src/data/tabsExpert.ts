@@ -21,17 +21,18 @@ export const tabsExpert: Tab[] = [
   createNote("A4", 5000),
   createNote("B4", 5000),
   createNote("C5", 5000),
+  createNote("A4", 5000),
 
   createPause(500),
 
-  createNote("A4", 5000),
   createNote("B4", 5000),
+  createNote("A4", 5000),
   createNote("C5", 5000),
 
   createPause(500),
 
-  createNote("A4", 5000),
   createNote("B4", 5000),
+  createNote("A4", 5000),
 
   createPause(500),
 
@@ -93,17 +94,18 @@ export const tabsExpert: Tab[] = [
   createNote("A4", 3000),
   createNote("B4", 3000),
   createNote("C5", 3000),
+  createNote("A4", 3000),
 
   createPause(300),
 
-  createNote("A4", 3000),
   createNote("B4", 3000),
+  createNote("A4", 3000),
   createNote("C5", 3000),
 
   createPause(300),
 
-  createNote("A4", 3000),
   createNote("B4", 3000),
+  createNote("A4", 3000),
 
   createPause(300),
 
