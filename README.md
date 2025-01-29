@@ -2,6 +2,7 @@
 
 Hey there, music lovers! Welcome to **CoopKaliJam**, a game I've developed for **React Jam Winter 2023**. This game is about playing virtual Kalimba with a twist - you and your friend share the Kalimba, each with only half!
 
+https://github.com/user-attachments/assets/24d615a3-7a30-4f14-a8d9-9a4388ecd49e
 ## About React Jam
 
 **React Jam** is a special online event where React developers, come together to build awesome games in **10 days** (actually 13, because of the holidays!). It's a chance to showcase creativity, experiment with ideas, and learn from a fantastic community. This Winter React Jam, the theme is all about **"Cooperation"**.
